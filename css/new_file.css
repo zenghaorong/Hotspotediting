@@ -1,0 +1,81 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#imag{
+	width: 1000px;
+}
+#zong{
+	position:relative;
+	width: 1000px;
+	margin: 60px auto;
+}
+#zhezhao{
+	position: absolute;
+	width: 1000px;
+	height: 625px;
+	cursor: crosshair;
+	background-color:#ffff0000;
+	z-index:2;
+}
+#kuang{
+	width: 100px;
+	height: 100px;
+	background-color: #4752e761;
+	position: absolute;
+	cursor: move;
+	left: -150px;
+	top: 0px;	
+	z-index:99998;
+}
+#anniu{
+	display: none;
+	position: absolute;
+	left: 100px;
+	top: 100px;	
+	z-index:99999;
+}
+#list{
+	width: 1000px;
+	margin: 10px auto;
+}
+
+
+
+/* 链接区域 */
+.link-map{
+	position: absolute;
+	width: 500px;
+	border: #aaaaaa 1px solid;
+}
+.link-map .link-title{
+	background-color: #fe4f67;
+	padding: 5px;
+	color: #fff;
+	font-weight: 500;
+	margin-bottom: 10px;
+
+}
+.link-tips{
+	color: #999;
+}
+.link-hd{
+	padding-left: 5px;
+}
+.link-hd>div{
+	margin-bottom: 15px;
+}
+.link-hd input{
+	border: #aaaaaa 1px solid;
+}
+.link-coors{
+	margin-bottom: 20px;
+}
+.link-coors label{
+	margin-right: 10px;
+}
+.link-coors span{
+	display: inline-block;
+	margin: 0px 5px;
+	border: #aaaaaa 1px solid;
+}

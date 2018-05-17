@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>热点绘图</title>	
+		<link rel="stylesheet" href="css/new_file.css" />
+	</head>
+	<body>
+		<div id="zong">
+			<div id="kuang" title="双击区域添加链接"></div>
+			<div id="zhezhao" title="拖动鼠标增加热区"></div>
+		    <img src="img/ChMkJlmILVOIXr2AABm-yQMeZmIAAfd_AND7IEAGb7h193.jpg" border="0" usemap="#planetmap" alt="sss" id="imag"/>
+		    <div id="anniu">
+				<button id="confirm">确认</button>
+				<button id="cancel">取消</button>
+			</div>
+		</div>
+
+		<div id="list"></div>
+		<div class="link-map">
+			<div class="link-title">区域设置</div>
+			<div class="link-hd">
+				<div ><span>链接地址：</span><input type="text"><span class="link-tips">鼠标点击区域后跳转的链接</span></div>
+				<div><span>描述说明：</span><input type="text"><span  class="link-tips">鼠标在区域上方时显示的文字</span></div>
+				<div class="link-coors"><label>左边距:<span >1151</span>px</label><label>上边距:<span >1151</span>px</label><label>宽度:<span >1151</span>px</label><label>高度:<span >1151</span>px</label></div>
+			</div>
+
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript" src="js/jquery-2.1.0.js" ></script>
+<script>
+	
+	$(function(){
+		
+		var leftX=0;
+		var leftY=0;
+		var rightX=leftX;
+        var rightY = leftY;
+        
+        var kwidth=rightX;
+        var kheight=rightY;
+        
+        var isClick=false;
+		
+		var c=document.getElementById("imag")
+		
+		//鼠标按下执行
+	   $("#zhezhao").mousedown(function(){
+	   	    leftX = event.clientX - c.getBoundingClientRect().left; 
+            leftY = event.clientY - c.getBoundingClientRect().top;
+            isClick=true;
+            console.log("左上坐标：x "+leftX+"    y "+leftY)
+	   })
+	   
+	    //鼠标移动时执行
+	   $("#zhezhao").mousemove(function(){
+	   	if(isClick){
+		   	    rightX = event.clientX - c.getBoundingClientRect().left; 
+	            rightY = event.clientY - c.getBoundingClientRect().top;
+	            console.log("左上坐标：x "+leftX+"    y "+leftY)
+	            kwidth=rightX-leftX;
+	            kheight=rightY-leftY;
+	            console.log("框选宽度： "+kwidth+"    高度： "+kheight)
+	            huikuang()
+           }
+	   })
+	   
+	   //鼠标松开执行
+	   $("#zhezhao").mouseup(function(){
+	   	    isClick=false;
+	   	    rightX = event.clientX - c.getBoundingClientRect().left; 
+            rightY = event.clientY - c.getBoundingClientRect().top;
+            console.log("左上坐标：x "+leftX+"    y "+leftY)
+            kwidth=rightX-leftX;
+            kheight=rightY-leftY;
+            console.log("框选宽度： "+kwidth+"    高度： "+kheight)
+            huikuang()
+            blockAnniu()
+	   })
+		   
+	   //绘制框
+	   function huikuang(){
+	      $("#kuang").css("left",leftX)
+	      $("#kuang").css("top",leftY)
+	      $("#kuang").css("width",kwidth)
+	      $("#kuang").css("height",kheight)
+	   }
+	   
+	   //显示按钮
+	   function blockAnniu(){
+	   	  $("#anniu").css("left",rightX)
+	   	  $("#anniu").css("top",rightY)
+	   	  $("#anniu").css("display","block")
+	   }
+	   
+	   //点击取消时执行
+	   $("#cancel").click(function(){
+	   	  reduction()
+	   })
+	   
+	   //点击确定时执行
+	   $("#confirm").click(function(){
+	   	  var str="<p>左上坐标:"+leftX+","+leftY+"   右下坐标:"+rightX+","+rightY+"   点击关联新闻</p>"
+	   	  $("#list").append(str);
+	   	  reduction()
+	   })
+	   
+	   //还原选中框
+	   function reduction(){
+	   	  $("#anniu").css("display","none")
+//	   	  $("#kuang").css("left","-150px")
+//	      $("#kuang").css("top","0px")
+//	      $("#kuang").css("width","100px")
+//	      $("#kuang").css("height","100px")
+	   }
+	   
+	})
+	
+</script>
+	
